@@ -1,0 +1,28 @@
+# S3 Utilities
+
+An application to invoke put, get, list, delete from a single runable node app. 
+
+## Overview
+
+Uses secure-s3-store to encrypt files sent to s3. Uses secure-s3-store to decrypt files pulled from s3.
+
+## Usage
+
+### Put a file to s3
+
+`s3util put <path-to-local-filename> <folder/filename>`
+
+### Get an file from s3
+
+`s3util get <folder/filename> <path-to-local-filename>`
+
+### List files on s3
+
+`s3util list <folder/>`
+
+### Delete a s3 file
+
+`s3util delete <folder/filename>`
+
+
+###### dpw | 2025.07.28

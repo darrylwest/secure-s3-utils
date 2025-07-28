@@ -1,0 +1,17 @@
+# Dependencies
+/node_modules
+
+# Build output
+/dist
+
+# Environment variables
+.env.keys
+
+logs/*.log
+logs/*.json
+
+coverage/
+
+tmp/
+
+reports/backup*.html
