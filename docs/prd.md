@@ -1,4 +1,4 @@
-# PRD: `s3utils` NPM Package
+# PRD: `s3-utils` NPM Package
 
 ## 1. Overview
 
@@ -19,6 +19,8 @@ DevOps engineers responsible for maintaining cloud environments.
 **Note**: _the target platform is any linux-like OS, Ubuntu, Darwin, etc._
 
 ### 2.1 Application Details
+
+A single executable with sub commands put, get, delete, list
 
 ### 3.1 Implementation Details
 
