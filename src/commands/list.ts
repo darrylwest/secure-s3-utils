@@ -21,6 +21,7 @@ export const listCommand = new Command('list')
       logger.info(`Listing files with prefix: ${prefix}`);
       
       // List files using secure-s3-store
+      // const files = await store.list(prefix, 0, 1000, true);
       const files = await store.list(prefix);
       
       logger.info(`Found ${files.length} files`);
