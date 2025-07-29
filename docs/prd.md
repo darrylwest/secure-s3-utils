@@ -35,5 +35,6 @@ The implementation includes
 * winston logger
 * dotenvx
 * secure-s3-store (git+https://github.com/darrylwest/secure-s3-backup.git)
+* possibly bun to create a stand-alone executable
 
 ###### dpw | 2025.07.28
