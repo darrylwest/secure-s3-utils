@@ -5,9 +5,11 @@ export interface CLIOptions {
 }
 
 export interface S3Config {
+  keys: { [kid: string]: string };
+  primaryKey: string;
+  endpoint?: string;
   bucket: string;
   region?: string;
   accessKeyId?: string;
   secretAccessKey?: string;
-  encryptionKey?: string;
 }

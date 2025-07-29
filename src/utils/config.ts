@@ -27,7 +27,15 @@ export const getS3Config = (): S3Config => {
   }
 
   if (!primaryKey) {
-    throw new Error('primary environment variable is required (current key)');
+    throw new Error('PRIMARY_KEY environment variable is required (current key)');
+  }
+
+  if (Object.keys(keys).length === 0) {
+    throw new Error('At least one encryption key (KEY_V1, KEY_V2, or KEY_V3) must be provided');
+  }
+
+  if (!keys[primaryKey]) {
+    throw new Error(`PRIMARY_KEY '${primaryKey}' must exist in available keys (${Object.keys(keys).join(', ')})`);
   }
 
   return {
