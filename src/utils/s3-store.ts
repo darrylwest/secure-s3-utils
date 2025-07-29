@@ -6,12 +6,11 @@ export const createS3Store = (verbose: boolean = false): SecureS3Store => {
   const config = getS3Config();
   const logger = createLogger(verbose);
 
-  const storeConfig = {
-    keys: {
-      primary: config.encryptionKey!,
-    },
-    primaryKey: 'primary',
+  return new SecureS3Store({
+    keys: config.keys,
+    primaryKey: config.primaryKey,
     s3Config: {
+      endpoint: config.endpoint,
       region: config.region,
       credentials: {
         accessKeyId: config.accessKeyId!,
@@ -19,7 +18,6 @@ export const createS3Store = (verbose: boolean = false): SecureS3Store => {
       },
     },
     logger,
-  };
-
-  return new SecureS3Store(storeConfig);
+  });
 };
+
