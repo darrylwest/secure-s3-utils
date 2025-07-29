@@ -8,17 +8,19 @@ export const deleteCommand = new Command('delete')
   .description('Delete file from S3')
   .argument('<s3-path>', 'S3 file path to delete')
   .option('-f, --force', 'skip confirmation prompt')
-  .action(async (s3Path: string, options: CLIOptions & { force?: boolean }) => {
-    const logger = createLogger(options.verbose, options.quiet);
+  .action(async (s3Path: string, options: CLIOptions & { force?: boolean }, command: Command) => {
+    const parentOptions = command.parent?.opts() || {};
+    const allOptions = { ...options, ...parentOptions };
+    const logger = createLogger(allOptions.verbose, allOptions.quiet);
 
     try {
       // Get S3 configuration
       const config = getS3Config();
-      const store = createS3Store(options.verbose);
-      
+      const store = createS3Store(allOptions.verbose, allOptions.quiet);
+
       // Build full S3 path with bucket
       const fullS3Path = `${config.bucket}/${s3Path}`;
-      
+
       logger.info(`Deleting file: ${fullS3Path}`);
 
       // First, check if file exists by attempting to get it
@@ -36,25 +38,29 @@ export const deleteCommand = new Command('delete')
 
       logger.info(`Successfully deleted ${fullS3Path}`);
 
-      if (options.json) {
-        console.log(JSON.stringify({
-          status: 'success',
-          s3Path: fullS3Path,
-          deleted: true,
-        }));
+      if (allOptions.json) {
+        console.log(
+          JSON.stringify({
+            status: 'success',
+            s3Path: fullS3Path,
+            deleted: true,
+          })
+        );
       } else {
         console.log(`✓ Deleted ${fullS3Path}`);
       }
     } catch (error) {
       logger.error(`Delete command failed: ${error}`);
-      
-      if (options.json) {
-        console.log(JSON.stringify({
-          status: 'error',
-          error: error instanceof Error ? error.message : String(error),
-        }));
+
+      if (allOptions.json) {
+        console.log(
+          JSON.stringify({
+            status: 'error',
+            error: error instanceof Error ? error.message : String(error),
+          })
+        );
       }
-      
+
       process.exit(1);
     }
   });

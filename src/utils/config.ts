@@ -23,7 +23,9 @@ export const getS3Config = (): S3Config => {
   }
 
   if (!accessKeyId || !secretAccessKey) {
-    throw new Error('AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables are required');
+    throw new Error(
+      'AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables are required'
+    );
   }
 
   if (!primaryKey) {
@@ -35,7 +37,9 @@ export const getS3Config = (): S3Config => {
   }
 
   if (!keys[primaryKey]) {
-    throw new Error(`PRIMARY_KEY '${primaryKey}' must exist in available keys (${Object.keys(keys).join(', ')})`);
+    throw new Error(
+      `PRIMARY_KEY '${primaryKey}' must exist in available keys (${Object.keys(keys).join(', ')})`
+    );
   }
 
   return {
@@ -45,6 +49,6 @@ export const getS3Config = (): S3Config => {
     bucket,
     region,
     accessKeyId,
-    secretAccessKey
+    secretAccessKey,
   };
 };

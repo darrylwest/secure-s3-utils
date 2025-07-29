@@ -10,8 +10,10 @@ export const putCommand = new Command('put')
   .description('Upload and encrypt file to S3')
   .argument('<local-file>', 'local file to upload')
   .argument('<s3-path>', 'S3 destination path')
-  .action(async (localFile: string, s3Path: string, options: CLIOptions) => {
-    const logger = createLogger(options.verbose, options.quiet);
+  .action(async (localFile: string, s3Path: string, options: CLIOptions, command: Command) => {
+    const parentOptions = command.parent?.opts() || {};
+    const allOptions = { ...options, ...parentOptions };
+    const logger = createLogger(allOptions.verbose, allOptions.quiet);
 
     try {
       // Validate local file exists
@@ -23,39 +25,43 @@ export const putCommand = new Command('put')
 
       // Read file content
       const fileContent = await readFile(localFile);
-      
+
       // Get S3 configuration
       const config = getS3Config();
-      const store = createS3Store(options.verbose);
-      
+      const store = createS3Store(allOptions.verbose, allOptions.quiet);
+
       // Build full S3 path with bucket
       const fullS3Path = `${config.bucket}/${s3Path}`;
-      
+
       // Upload encrypted file
       await store.put(fullS3Path, fileContent);
 
       logger.info(`Successfully uploaded ${localFile} to ${fullS3Path}`);
 
-      if (options.json) {
-        console.log(JSON.stringify({
-          status: 'success',
-          localFile,
-          s3Path: fullS3Path,
-          size: fileContent.length,
-        }));
+      if (allOptions.json) {
+        console.log(
+          JSON.stringify({
+            status: 'success',
+            localFile,
+            s3Path: fullS3Path,
+            size: fileContent.length,
+          })
+        );
       } else {
         console.log(`✓ Uploaded ${localFile} to ${fullS3Path} (${fileContent.length} bytes)`);
       }
     } catch (error) {
       logger.error(`Put command failed: ${error}`);
-      
-      if (options.json) {
-        console.log(JSON.stringify({
-          status: 'error',
-          error: error instanceof Error ? error.message : String(error),
-        }));
+
+      if (allOptions.json) {
+        console.log(
+          JSON.stringify({
+            status: 'error',
+            error: error instanceof Error ? error.message : String(error),
+          })
+        );
       }
-      
+
       process.exit(1);
     }
   });

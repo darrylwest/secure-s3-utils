@@ -1,6 +1,6 @@
 {
   "name": "s3-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A CLI wrapper around secure-s3-store for encrypted S3 file operations",
   "type": "module",
   "main": "dist/cli.js",
