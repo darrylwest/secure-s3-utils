@@ -1,17 +1,27 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { putCommand } from './commands/put';
-import { getCommand } from './commands/get';
-import { listCommand } from './commands/list';
-import { deleteCommand } from './commands/delete';
+import { readFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { putCommand } from './commands/put.js';
+import { getCommand } from './commands/get.js';
+import { listCommand } from './commands/list.js';
+import { deleteCommand } from './commands/delete.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const packageJson = JSON.parse(
+  readFileSync(join(__dirname, '../package.json'), 'utf8')
+);
 
 const program = new Command();
 
 program
   .name('s3-utils')
   .description('CLI wrapper for secure-s3-store - encrypted S3 file operations')
-  .version('0.1.0');
+  .version(packageJson.version);
 
 program
   .option('-j, --json', 'output in JSON format')

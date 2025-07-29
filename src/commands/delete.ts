@@ -1,6 +1,6 @@
 import { Command } from 'commander';
-import { CLIOptions } from '../types';
-import { createLogger } from '../utils/logger';
+import { CLIOptions } from '../types/index.js';
+import { createLogger } from '../utils/logger.js';
 
 export const deleteCommand = new Command('delete')
   .description('Delete file from S3')

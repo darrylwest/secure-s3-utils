@@ -1,6 +1,6 @@
 import { SecureS3Store } from 'secure-s3-store';
-import { getS3Config } from './config';
-import { createLogger } from './logger';
+import { getS3Config } from './config.js';
+import { createLogger } from './logger.js';
 
 export const createS3Store = (verbose: boolean = false): SecureS3Store => {
   const config = getS3Config();

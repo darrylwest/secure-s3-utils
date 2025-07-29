@@ -1,10 +1,10 @@
 import { Command } from 'commander';
 import { readFile } from 'fs/promises';
 import { existsSync } from 'fs';
-import { CLIOptions } from '../types';
-import { createLogger } from '../utils/logger';
-import { createS3Store } from '../utils/s3-store';
-import { getS3Config } from '../utils/config';
+import { CLIOptions } from '../types/index.js';
+import { createLogger } from '../utils/logger.js';
+import { createS3Store } from '../utils/s3-store.js';
+import { getS3Config } from '../utils/config.js';
 
 export const putCommand = new Command('put')
   .description('Upload and encrypt file to S3')

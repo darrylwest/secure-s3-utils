@@ -1,9 +1,9 @@
 import { Command } from 'commander';
 import { writeFile } from 'fs/promises';
-import { CLIOptions } from '../types';
-import { createLogger } from '../utils/logger';
-import { createS3Store } from '../utils/s3-store';
-import { getS3Config } from '../utils/config';
+import { CLIOptions } from '../types/index.js';
+import { createLogger } from '../utils/logger.js';
+import { createS3Store } from '../utils/s3-store.js';
+import { getS3Config } from '../utils/config.js';
 
 export const getCommand = new Command('get')
   .description('Download and decrypt file from S3')

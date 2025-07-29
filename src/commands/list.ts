@@ -1,6 +1,6 @@
 import { Command } from 'commander';
-import { CLIOptions } from '../types';
-import { createLogger } from '../utils/logger';
+import { CLIOptions } from '../types/index.js';
+import { createLogger } from '../utils/logger.js';
 
 export const listCommand = new Command('list')
   .description('List files in S3 bucket/prefix')
