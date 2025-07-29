@@ -9,11 +9,6 @@ module.exports = {
       useESM: true
     }],
   },
-  globals: {
-    'ts-jest': {
-      useESM: true
-    }
-  },
   setupFilesAfterEnv: ['<rootDir>/tests/setup.ts'],
   collectCoverageFrom: [
     'src/**/*.ts',
