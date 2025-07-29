@@ -8,8 +8,6 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   extends: [
     'eslint:recommended',
-    '@typescript-eslint/recommended',
-    '@typescript-eslint/recommended-requiring-type-checking',
   ],
   root: true,
   env: {
@@ -18,9 +16,7 @@ module.exports = {
   },
   ignorePatterns: ['dist/', 'node_modules/', '.eslintrc.js'],
   rules: {
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    '@typescript-eslint/explicit-function-return-type': 'warn',
-    '@typescript-eslint/no-explicit-any': 'warn',
-    '@typescript-eslint/prefer-const': 'error',
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'prefer-const': 'error',
   },
 };

@@ -8,13 +8,13 @@ export const putCommand = new Command('put')
   .argument('<s3-path>', 'S3 destination path')
   .action(async (localFile: string, s3Path: string, options: CLIOptions) => {
     const logger = createLogger(options.verbose, options.quiet);
-    
+
     try {
       logger.info(`Put command: ${localFile} -> ${s3Path}`);
-      
+
       // TODO: Implement actual put functionality using secure-s3-store
       logger.info('Put functionality not yet implemented');
-      
+
       if (options.json) {
         console.log(JSON.stringify({ status: 'success', localFile, s3Path }));
       } else {

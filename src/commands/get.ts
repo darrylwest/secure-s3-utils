@@ -8,14 +8,14 @@ export const getCommand = new Command('get')
   .argument('[local-path]', 'local destination path (optional)')
   .action(async (s3Path: string, localPath: string | undefined, options: CLIOptions) => {
     const logger = createLogger(options.verbose, options.quiet);
-    
+
     try {
       const destination = localPath || s3Path.split('/').pop() || 'downloaded-file';
       logger.info(`Get command: ${s3Path} -> ${destination}`);
-      
+
       // TODO: Implement actual get functionality using secure-s3-store
       logger.info('Get functionality not yet implemented');
-      
+
       if (options.json) {
         console.log(JSON.stringify({ status: 'success', s3Path, localPath: destination }));
       } else {

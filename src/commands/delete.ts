@@ -7,13 +7,13 @@ export const deleteCommand = new Command('delete')
   .argument('<s3-path>', 'S3 file path to delete')
   .action(async (s3Path: string, options: CLIOptions) => {
     const logger = createLogger(options.verbose, options.quiet);
-    
+
     try {
       logger.info(`Delete command: ${s3Path}`);
-      
+
       // TODO: Implement actual delete functionality using secure-s3-store
       logger.info('Delete functionality not yet implemented');
-      
+
       if (options.json) {
         console.log(JSON.stringify({ status: 'success', s3Path, deleted: true }));
       } else {
