@@ -1,7 +1,7 @@
 import winston from 'winston';
 
 export const createLogger = (verbose: boolean = false, quiet: boolean = false): winston.Logger => {
-  const level = quiet ? 'error' : verbose ? 'debug' : 'info';
+  const level = quiet ? 'error' : verbose ? 'debug' : 'warn';
 
   return winston.createLogger({
     level,

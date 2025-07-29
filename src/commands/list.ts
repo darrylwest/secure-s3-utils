@@ -8,6 +8,8 @@ export const listCommand = new Command('list')
   .description('List files in S3 bucket/prefix')
   .argument('[s3-path]', 'S3 path/prefix to list (optional)')
   .action(async (s3Path: string | undefined, options: CLIOptions) => {
+    console.log(JSON.stringify(options));
+
     const logger = createLogger(options.verbose, options.quiet);
 
     try {

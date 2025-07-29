@@ -1,4 +1,6 @@
-# List Command Issues
+# Bugs
+
+## List Command Issues
 
 1. `npm run list`
 
@@ -19,3 +21,7 @@ Reports zero files but
 4. maybe just refactor `list` command to do what it should; get code from the librarry; fix, then move back to the library
 
 5. need a what to read the entire bucket to build a document index ; it would be updated each time files are added, removed, or modified
+
+## verbose and quiet switches do not work
+
+
