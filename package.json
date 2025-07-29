@@ -16,7 +16,9 @@
     "version": "node dist/cli.js --version",
     "help": "node dist/cli.js --help",
     "put": "dotenvx run -- node dist/cli.js put",
-    "get": "dotenvx run -- node dist/cli.js get"
+    "get": "dotenvx run -- node dist/cli.js get",
+    "list": "dotenvx run -- node dist/cli.js list",
+    "delete": "dotenvx run -- node dist/cli.js delete"
   },
   "keywords": ["s3", "cli", "encryption", "secure-s3-store", "devops"],
   "author": "dpw",
