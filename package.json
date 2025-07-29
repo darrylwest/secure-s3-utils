@@ -1,6 +1,6 @@
 {
   "name": "s3-utils",
-  "version": "0.1.0",
+  "version": "1.0.2",
   "description": "A CLI wrapper around secure-s3-store for encrypted S3 file operations",
   "type": "module",
   "main": "dist/cli.js",
@@ -13,6 +13,8 @@
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "format": "prettier --write src/**/*.ts",
+    "version": "node dist/cli.js --version",
+    "help": "node dist/cli.js --help",
     "put": "dotenvx run -- node dist/cli.js put",
     "get": "dotenvx run -- node dist/cli.js get"
   },
