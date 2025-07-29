@@ -1,6 +1,10 @@
 import { Command } from 'commander';
+import { readFile } from 'fs/promises';
+import { existsSync } from 'fs';
 import { CLIOptions } from '../types';
 import { createLogger } from '../utils/logger';
+import { createS3Store } from '../utils/s3-store';
+import { getS3Config } from '../utils/config';
 
 export const putCommand = new Command('put')
   .description('Upload and encrypt file to S3')
@@ -10,18 +14,48 @@ export const putCommand = new Command('put')
     const logger = createLogger(options.verbose, options.quiet);
 
     try {
-      logger.info(`Put command: ${localFile} -> ${s3Path}`);
+      // Validate local file exists
+      if (!existsSync(localFile)) {
+        throw new Error(`Local file not found: ${localFile}`);
+      }
 
-      // TODO: Implement actual put functionality using secure-s3-store
-      logger.info('Put functionality not yet implemented');
+      logger.info(`Uploading ${localFile} to ${s3Path}`);
+
+      // Read file content
+      const fileContent = await readFile(localFile);
+      
+      // Get S3 configuration
+      const config = getS3Config();
+      const store = createS3Store(options.verbose);
+      
+      // Build full S3 path with bucket
+      const fullS3Path = `${config.bucket}/${s3Path}`;
+      
+      // Upload encrypted file
+      await store.put(fullS3Path, fileContent);
+
+      logger.info(`Successfully uploaded ${localFile} to ${fullS3Path}`);
 
       if (options.json) {
-        console.log(JSON.stringify({ status: 'success', localFile, s3Path }));
+        console.log(JSON.stringify({
+          status: 'success',
+          localFile,
+          s3Path: fullS3Path,
+          size: fileContent.length,
+        }));
       } else {
-        console.log(`Would upload ${localFile} to ${s3Path}`);
+        console.log(`✓ Uploaded ${localFile} to ${fullS3Path} (${fileContent.length} bytes)`);
       }
     } catch (error) {
       logger.error(`Put command failed: ${error}`);
+      
+      if (options.json) {
+        console.log(JSON.stringify({
+          status: 'error',
+          error: error instanceof Error ? error.message : String(error),
+        }));
+      }
+      
       process.exit(1);
     }
   });
