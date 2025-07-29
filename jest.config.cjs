@@ -10,6 +10,7 @@ module.exports = {
     }],
   },
   setupFilesAfterEnv: ['<rootDir>/tests/setup.ts'],
+  testTimeout: 30000, // 30 seconds for integration tests
   collectCoverageFrom: [
     'src/**/*.ts',
     '!src/**/*.d.ts',
