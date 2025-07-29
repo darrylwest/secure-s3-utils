@@ -60,7 +60,7 @@ AWS S3 + Encryption
 - **secure-s3-store** - All S3 and encryption logic
 - **Winston** - Logging (configurable levels)
 - **Jest + ts-jest** - Testing
-- **ESLint + Prettier** - Code quality
+- **ESLint** - Code quality
 - **Prettier** - Code view consitancy
 - **Dotenvx** - to encrypt/decrypt .env files
 - **Bun** (optional) - Standalone executable generation
@@ -85,9 +85,9 @@ Each CLI command will be a thin wrapper that:
 
 ## 5. Implementation Plan
 
-**Week 1:** Basic CLI structure, `put` and `get` commands
-**Week 2:** `list` and `delete` commands, error handling
-**Week 3:** Testing, documentation, (optional) NPM packaging
+1. Basic CLI structure, `put` and `get` commands
+2. `list` and `delete` commands, error handling
+3. Testing, documentation, (optional) NPM packaging
 
 ## 6. Out of Scope
 
@@ -96,3 +96,5 @@ Each CLI command will be a thin wrapper that:
 - S3 operations (handled by `secure-s3-store`)
 - Key management (handled by `secure-s3-store`)
 - Complex configuration management beyond what the library provides
+
+###### dpw | 2025.07.29

@@ -8,11 +8,11 @@
                                                  
 ```
 
-An application to invoke put, get, list, delete from a single runable node app. 
+An application to invoke put, get, list, delete from a single runable node app.  A thin wrapper around **secure-s3-store**.
 
 ## Overview
 
-Uses secure-s3-store to encrypt files sent to s3. Uses secure-s3-store to decrypt files pulled from s3.
+Uses **secure-s3-store** to encrypt files sent to s3. Uses **secure-s3-store** to decrypt files pulled from s3.
 
 ## Usage
 
@@ -32,5 +32,9 @@ Uses secure-s3-store to encrypt files sent to s3. Uses secure-s3-store to decryp
 
 `s3-utils delete <folder/filename>`
 
+## References
+
+* [secure-s3-store](https://github.com/darrylwest/secure-s3-store)
+* [dotenvx](https://github.com/dotenvx/dotenvx)
 
 ###### dpw | 2025.07.28
